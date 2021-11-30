@@ -8,3 +8,4 @@ psycopg2
 protobuf==3.19.1
 gunicorn
 Flask-Session 
+google-analytics-data
