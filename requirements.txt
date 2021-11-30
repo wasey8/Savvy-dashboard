@@ -6,3 +6,4 @@ SQLAlchemy==1.4.26
 requests==2.22.0
 protobuf==3.19.1
 gunicorn
+Flask-Session 
