@@ -1,5 +1,4 @@
 aiohttp==3.8.1
-async-timeout==3.0.1
 Flask==0.10
 Flask-Session==0.4.0
 Flask-SQLAlchemy==2.5.1
