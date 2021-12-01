@@ -223,7 +223,7 @@ def login():
         #---------Session veriable----------#
         session['username']=username
 
-        if session['username']=="savvyadmin" and password=="12345":
+        if session['username']=="savvyadmin" and password=="9NZteL9vht":
             return redirect(url_for('dashboard'))
         else:
             flash("Wrong credentials!")
