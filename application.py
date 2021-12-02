@@ -13,6 +13,7 @@ from functions.calender import check
 from functions.Savvyapis import get_all_urls
 from functions.website import get_all_urls_web
 from functions.database import db
+import pytz
 from functions.History import SevenDays, SevenDaysPurchasedGigs,thirtyDays,SevenDaysSellers, thirtyDaysPurchasedGigs,thirtyDaysSellers,SevenDaysBuyers,thirtyDaysBuyers,SevenDaysActiveJobs,thirtyDaysActiveJobs,SevenDaysBlockedJobs,thirtyDaysBlockedJobs,SevenDaysTotalGigs,thirtyDaysTotalGigs,SevenDaysactiveusers,thirtyDaysactiveusers,SevenDaysCrashFreeUsers,thirtyDaysCrashFreeUsers,SevenDaysAverageValue,thirtyDaysAverageValue,SevenDaysUnprocessedPayments,thirtyDaysUnprocessedPayments,SevenDaysDau,thirtyDaysDau
 from functions.googleA import sample_run_report,sample_run_report_crash,sample_run_report_lastDay
 
@@ -33,7 +34,7 @@ Session(app)
 
 
 #------------Today's date--------------------------------------------#
-date=datetime.date(datetime.now())
+date=datetime.date(datetime.now(pytz.timezone("Asia/Karachi")))
 
 
 #-----------------Real time--------------------------------#
