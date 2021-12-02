@@ -6,6 +6,7 @@ SQLAlchemy==1.4.26
 requests==2.22.0
 psycopg2
 protobuf==3.19.1
+datetime
 gunicorn
 Flask-Session 
 google-analytics-data
