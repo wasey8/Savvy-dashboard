@@ -1148,7 +1148,7 @@ def DauInner():
 def getPlotCSV(var,var1):
     if var=='Users':
         file=[]
-        search=db.execute("SELECT date,count FROM users where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM users where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1170,7 +1170,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Buyers':
         file=[]
-        search=db.execute("SELECT date,count FROM buyers where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM buyers where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1192,7 +1192,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Sellers':
         file=[]
-        search=db.execute("SELECT date,count FROM sellers where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM sellers where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1214,7 +1214,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Active Jobs':
         file=[]
-        search=db.execute("SELECT date,count FROM activejobs where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM activejobs where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1236,7 +1236,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Blocked Jobs':
         file=[]
-        search=db.execute("SELECT date,count FROM blockedjobs where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM blockedjobs where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1258,7 +1258,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Total Gigs':
         file=[]
-        search=db.execute("SELECT date,count FROM totalgigs where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM totalgigs where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1280,7 +1280,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Purchased Gigs':
         file=[]
-        search=db.execute("SELECT date,count FROM gigspurchased where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM gigspurchased where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1302,7 +1302,7 @@ def getPlotCSV(var,var1):
     
     elif var=='Active 1 day users':
         file=[]
-        search=db.execute("SELECT date,count FROM activedayusers where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM activedayusers where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1324,7 +1324,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Crash Free users':
         file=[]
-        search=db.execute("SELECT date,count FROM crashfree where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM crashfree where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1346,7 +1346,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Average Transaction Values':
         file=[]
-        search=db.execute("SELECT date,count FROM averagevalue where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM averagevalue where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1368,7 +1368,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Unprocessed Payments':
         file=[]
-        search=db.execute("SELECT date,count FROM unprocessedpayments where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM unprocessedpayments where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1390,7 +1390,7 @@ def getPlotCSV(var,var1):
 
     elif var=='Daily Active Users':
         file=[]
-        search=db.execute("SELECT date,count FROM dau where extract(Month from date)=:var1",{"var1":var1}).fetchall()
+        search=db.execute("SELECT date,count FROM dau where extract(Month from date)=:var1 order by date",{"var1":var1}).fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1417,7 +1417,7 @@ def getPlotCSV(var,var1):
 def getPlotCSV1(var):
     if var=='Users':
         file=[]
-        search=db.execute("SELECT date,count FROM users").fetchall()
+        search=db.execute("SELECT date,count FROM users order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1439,7 +1439,7 @@ def getPlotCSV1(var):
 
     elif var=='Sellers':
         file=[]
-        search=db.execute("SELECT date,count FROM sellers").fetchall()
+        search=db.execute("SELECT date,count FROM sellers order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1461,7 +1461,7 @@ def getPlotCSV1(var):
 
     elif var=='Buyers':
         file=[]
-        search=db.execute("SELECT date,count FROM buyers").fetchall()
+        search=db.execute("SELECT date,count FROM buyers order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1483,7 +1483,7 @@ def getPlotCSV1(var):
 
     elif var=='Active Jobs':
             file=[]
-            search=db.execute("SELECT date,count FROM activejobs").fetchall()
+            search=db.execute("SELECT date,count FROM activejobs order by date").fetchall()
             for i in search:
                 data=i['date']
                 count=i['count']
@@ -1505,7 +1505,7 @@ def getPlotCSV1(var):
 
     elif var=='Blocked Jobs':
             file=[]
-            search=db.execute("SELECT date,count FROM blockedjobs").fetchall()
+            search=db.execute("SELECT date,count FROM blockedjobs order by date").fetchall()
             for i in search:
                 data=i['date']
                 count=i['count']
@@ -1527,7 +1527,7 @@ def getPlotCSV1(var):
 
     elif var=='Total Gigs':
             file=[]
-            search=db.execute("SELECT date,count FROM totalgigs").fetchall()
+            search=db.execute("SELECT date,count FROM totalgigs order by date").fetchall()
             for i in search:
                 data=i['date']
                 count=i['count']
@@ -1549,7 +1549,7 @@ def getPlotCSV1(var):
 
     elif var=='Purchased Gigs':
             file=[]
-            search=db.execute("SELECT date,count FROM gigspurchased").fetchall()
+            search=db.execute("SELECT date,count FROM gigspurchased order by date").fetchall()
             for i in search:
                 data=i['date']
                 count=i['count']
@@ -1572,7 +1572,7 @@ def getPlotCSV1(var):
      
     elif var=='Active 1 day users':
         file=[]
-        search=db.execute("SELECT date,count FROM activedayusers").fetchall()
+        search=db.execute("SELECT date,count FROM activedayusers order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1596,7 +1596,7 @@ def getPlotCSV1(var):
        
     elif var=='Average Transaction Value':
         file=[]
-        search=db.execute("SELECT date,count FROM averagevalue").fetchall()
+        search=db.execute("SELECT date,count FROM averagevalue order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1620,7 +1620,7 @@ def getPlotCSV1(var):
        
     elif var=='Crash Free users':
         file=[]
-        search=db.execute("SELECT date,count FROM crashfree").fetchall()
+        search=db.execute("SELECT date,count FROM crashfree order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1643,7 +1643,7 @@ def getPlotCSV1(var):
        
     elif var=='Unprocessed Payments':
         file=[]
-        search=db.execute("SELECT date,count FROM unprocessedpayments").fetchall()
+        search=db.execute("SELECT date,count FROM unprocessedpayments order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
@@ -1666,7 +1666,7 @@ def getPlotCSV1(var):
       
     elif var=='Daily Active Users':
         file=[]
-        search=db.execute("SELECT date,count FROM dau").fetchall()
+        search=db.execute("SELECT date,count FROM dau order by date").fetchall()
         for i in search:
             data=i['date']
             count=i['count']
