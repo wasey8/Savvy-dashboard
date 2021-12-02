@@ -113,6 +113,8 @@ def updata_data():
 
         for i in dateCheck:
             dbDAte.append(i[0])
+            
+        print(date)
 
         if date not in dbDAte :
             db.execute("INSERT INTO users(date,count) VALUES (:date,:count)",{"date":date,"count":users})
