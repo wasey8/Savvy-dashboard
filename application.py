@@ -336,14 +336,20 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM users where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM users where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -352,8 +358,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM users where date=:date order by date",{"date":date}).fetchall()
                     if not search:
@@ -381,14 +387,20 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM sellers where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM sellers where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -397,7 +409,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM sellers where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -425,14 +438,21 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
+
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM buyers where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM buyers where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -441,9 +461,11 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM buyers where date=:date",{"date":date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
@@ -469,14 +491,20 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM activejobs where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM activejobs where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -485,7 +513,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM activejobs where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -514,14 +543,20 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM blockedjobs where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM blockedjobs where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -530,7 +565,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM blockedjobs where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -560,14 +596,19 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM totalgigs where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM totalgigs where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -576,7 +617,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM totalgigs where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -605,14 +647,19 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM gigspurchased where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM gigspurchased where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -621,7 +668,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM gigspurchased where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -649,14 +697,20 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM averagevalue where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM averagevalue where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -665,7 +719,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM averagevalue where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -693,14 +748,19 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM unprocessedpayments where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM unprocessedpayments where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -709,7 +769,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM unprocessedpayments where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -781,14 +842,20 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM activedayusers where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM activedayusers where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -797,7 +864,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM activedayusers where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -825,14 +893,19 @@ def search(var):
             date=request.form.get('input')
             try:
                 date=date.lower()
+                MonthCheck=date
                 if date== 'january' or date=='february' or date=='march' or date== 'april' or date=='may' or date=='june' or date== 'july' or date=='august' or date=='september' or date== 'october' or date=='november' or date=='december':
                     Date=check(date)
                     usersData=[]
                     search=db.execute("SELECT * FROM dau where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
+                    Month=db.execute("SELECT count FROM dau where extract(Month from date)=:date order by date",{"date":Date}).fetchall()
                     if not search:
                         error="No Records Found!"
                         return render_template("error.html",username=username,error=error,var=var)
                     else:
+                        AllMonth=[]
+                        for i in Month:
+                            AllMonth.append(i[0])           
                         for i in search:
                             date=i[0]
                             count=i[1]
@@ -841,7 +914,8 @@ def search(var):
                                 "count":count
                             }
                             usersData.append(all_data)
-                        return render_template("History.html",username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
+                        ThisMonth=AllMonth[-1]-AllMonth[0]
+                        return render_template("search.html",Month=MonthCheck,ThisMonth=ThisMonth,username=username,usersData=usersData,var=var,Seven=Seven,Thirty=Thirty,var1=Date)
                 else:
                     search=db.execute("SELECT date,count FROM dau where date=:date",{"date":date}).fetchall()
                     if not search:
@@ -866,9 +940,6 @@ def search(var):
     else:
         flash("You need to log in first!")
         return redirect(url_for('homepage'))
-
-
-
 
 
 #----------------Seller_inner_page----------------------------------#
