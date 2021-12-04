@@ -60,22 +60,25 @@ def active_users():
 def dau():
     def generate():
         dbDAte=[]
-        a=requests.get("http://127.0.0.1:5001/firebase")
-        a=a.json()
-        a=a['dau']
-        dateCheck=db.execute("SELECT * FROM dau").fetchall()
-        for i in dateCheck:
-            dbDAte.append(i[0])
+        try:
+            a=requests.get("http://127.0.0.1:5001/firebase")
+            a=a.json()
+            a=a['dau']
+            dateCheck=db.execute("SELECT * FROM dau").fetchall()
+            for i in dateCheck:
+                dbDAte.append(i[0])
 
-        if date not in dbDAte :
-            db.execute("INSERT INTO dau(date,count) VALUES (:date,:count)",{"date":date,"count":a})
-            db.commit()
+            if date not in dbDAte :
+                db.execute("INSERT INTO dau(date,count) VALUES (:date,:count)",{"date":date,"count":a})
+                db.commit()
 
-        elif date in dbDAte:
-            db.execute("UPDATE dau set count=:count where date=:date",{"count":a,"date":date})
-            db.commit()
-        
-        yield str(a)
+            elif date in dbDAte:
+                db.execute("UPDATE dau set count=:count where date=:date",{"count":a,"date":date})
+                db.commit()
+
+        except Exception:
+            a=db.execute("SELECT count FROM dau  order by date desc limit 1").fetchone()        
+        yield str(a[0])
     return Response(generate()) 
 
 
@@ -267,7 +270,7 @@ def appFunc():
     username=session.get('username')
     if  username:
         crash=sample_run_report_crash(294104009)
-        dau=db.execute("SELECT count FROM dau where date=:date",{"date":date}).fetchone()
+        dau=db.execute("SELECT count FROM dau  order by date desc limit 1").fetchone()
         app_users=sample_run_report(294104009)
         crash=(crash/1)*100
         last_day=sample_run_report_lastDay(294104009)
