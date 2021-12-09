@@ -122,6 +122,7 @@
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
                         <h1 style="font-size: 25px;"class="h3 mb-0 text-gray-800">{{var}} History</h1>
+
                         <div class="container text-left">
                             <div class="row justify-content-center">
                               <div class="col-lg-3">
@@ -141,7 +142,12 @@
 
                        
                     </div>
+                    {% if var=="Crash Free users" or var=="Average Transaction Value"%}
+                    {% else %}
+                    <a style="height: fit-content; margin: 2px; text-align: left; background-color: #8341c3; border-color: #8341c3;" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" href="{{ url_for('stats',var=var) }}" role="button">Statistics <i class="fa fa-bar-chart" aria-hidden="true"></i></a>
 
+
+                    {% endif%}
                     <div >
                         
     
@@ -153,7 +159,7 @@
 
                     <!-- Content Row -->
                     <table style="margin: 3px;">
-                       
+
                         <thead>
                             
                           <tr>
