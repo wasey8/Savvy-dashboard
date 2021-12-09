@@ -1796,6 +1796,47 @@ def getPlotCSV2(users,dau,buyers,sellers,active,block,totalGigs,purchasedGigs,ap
     path = file_name
     return send_file(path, as_attachment=True)
 
+#--------------------stats page-----------------------------#
+@app.route("/stats/<var>")
+def stats(var):
+    username=session.get('username')
+    if  username:
+        if var=="Users":
+            AllMonths=users()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Sellers":
+            AllMonths=sellers()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Buyers":
+            AllMonths=buyers()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Blocked Jobs":
+            AllMonths=blockedjobs()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Total Gigs":
+            AllMonths=totalgigs()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Purchased Gigs":
+            AllMonths=gigspurchased()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Active 1 day users":
+            AllMonths=activedayusers()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Daily Active Users":
+            AllMonths=dailyac()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Unprocessed Payments":
+            AllMonths=unprocessedpayments()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+        elif var=="Active Jobs":
+            AllMonths=activejobs()
+            return render_template('stats.html',date=date,username=username,january=AllMonths[0],february=AllMonths[1],march=AllMonths[2],april=AllMonths[3],may=AllMonths[4],june=AllMonths[5],july=AllMonths[6],august=AllMonths[7],september=AllMonths[8],october=AllMonths[9],november=AllMonths[10],december=AllMonths[11],var=var)
+    else:
+        flash("You need to log in first!")
+        return redirect(url_for('homepage'))
+
+
+
 #--------------------Logout-----------------------------#
 @app.route("/logout")
 def logout():
